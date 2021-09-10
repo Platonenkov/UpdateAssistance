@@ -172,10 +172,14 @@ namespace UpdateAssistance
                 new GitHubClient(header, new InMemoryCredentialStore(new Credentials(_Token)));
         }
 
-        private async Task<Release> GetLatestVersionAsync()
+        public async Task<IReadOnlyList<Release>> GetPackageReleases()
         {
             var github = this.GetGitHubClient();
-            var releases = await github.Repository.Release.GetAll(this._UserName, this._RepoName);
+            return await github.Repository.Release.GetAll(this._UserName, this._RepoName);
+        }
+        private async Task<Release> GetLatestVersionAsync()
+        {
+            var releases = await GetPackageReleases();
             return releases.FirstOrDefault(r => r.Prerelease == false);
         }
 

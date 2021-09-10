@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Threading.Tasks;
+using Octokit;
 
 namespace UpdateAssistance
 {
     /// <summary>
-    /// <see cref="IUpdateService"/> defines a platform-independent service for updating the GMDC Application.
+    /// <see cref="IUpdateService"/> defines a platform-independent service for updating the Application.
     /// </summary>
     public interface IUpdateService
     {
+        public void SetupSettings(Assembly assembly, string ProductName, string version, string UserName, string Token, string repoName);
+        public Task<IReadOnlyList<Release>> GetPackageReleases();
         /// <summary>
         /// Gets a observable value indicating whether the application can be safely closed.
         /// Terminating during an update operation can result in a crash.
@@ -23,7 +27,7 @@ namespace UpdateAssistance
         bool IsInstalled { get; }
 
         /// <summary>
-        /// Gets all versions of the GMDC application that are currently published.
+        /// Gets all versions of the application that are currently published.
         /// </summary>
         /// <returns>A collection of <see cref="ReleaseInfo"/> for all published releases.</returns>
         Task<IEnumerable<ReleaseInfo>> GetVersionsAsync();
