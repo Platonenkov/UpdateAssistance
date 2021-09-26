@@ -41,15 +41,22 @@ namespace UpdateAssistance
         {
             var assembly = Assembly.GetEntryAssembly();
 
-            this.UpdateDotExe = Path.Combine(
-                Path.GetDirectoryName(assembly.Location),
-                "..",
+            this.UpdateDotExe = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
                 "Update.exe");
 
             var isVsDebug = this.UpdateDotExe.Contains(Path.Combine("Debug", "..", "Update.exe"));
 
             this.IsInstalled = File.Exists(this.UpdateDotExe) && !isVsDebug;
         }
+        /// <summary>
+        /// Установка настроек
+        /// </summary>
+        /// <param name="assembly">сбока котор</param>
+        /// <param name="ProductName"></param>
+        /// <param name="version"></param>
+        /// <param name="UserName"></param>
+        /// <param name="Token"></param>
+        /// <param name="repoName"></param>
         public void SetupSettings(Assembly assembly, string ProductName, string version, string UserName, string Token, string repoName)
         {
             _Assembly = assembly;
@@ -194,7 +201,7 @@ namespace UpdateAssistance
                     return null;
                 }
 
-                var releasesAsset = newestRelease.Assets.FirstOrDefault(r => r.Name.ToLower() == "releases");
+                var releasesAsset = newestRelease.Assets.FirstOrDefault()/*(r => r.Name.ToLower() == "releases")*/;
                 if (releasesAsset == null)
                 {
                     // An error occured retreiving the RELEASES file

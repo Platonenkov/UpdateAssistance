@@ -104,6 +104,28 @@
             Gets or sets the font weight at which this <see cref="T:UpdateAssistance.Documents.Span"/> should be rendered.
             </summary>
         </member>
+        <member name="T:UpdateAssistance.IRestoreService">
+            <summary>
+            <see cref="T:UpdateAssistance.IRestoreService"/> provides a platform-independent service for restoring the state
+            of the GroupMe Desktop Client, as well as performing soft and hard application reboots.
+            </summary>
+        </member>
+        <member name="P:UpdateAssistance.IRestoreService.ShouldRestoreState">
+            <summary>
+            Gets a value indicating whether the application should restore the prior state on initialization.
+            </summary>
+        </member>
+        <member name="M:UpdateAssistance.IRestoreService.SoftApplicationRestart">
+            <summary>
+            Performs a soft application restart, which will allow
+            the client to reopen in a state similiar to how it was prior to shutdown.
+            </summary>
+        </member>
+        <member name="M:UpdateAssistance.IRestoreService.HardApplicationRestart">
+            <summary>
+            Performs a hard application restart. Any unsaved data will be lost.
+            </summary>
+        </member>
         <member name="T:UpdateAssistance.IUpdateService">
             <summary>
             <see cref="T:UpdateAssistance.IUpdateService"/> defines a platform-independent service for updating the Application.
@@ -209,6 +231,17 @@
             <summary>
             Initializes a new instance of the <see cref="T:UpdateAssistance.UpdateAssist"/> class.
             </summary>
+        </member>
+        <member name="M:UpdateAssistance.UpdateAssist.SetupSettings(System.Reflection.Assembly,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Установка настроек
+            </summary>
+            <param name="assembly">сбока котор</param>
+            <param name="ProductName"></param>
+            <param name="version"></param>
+            <param name="UserName"></param>
+            <param name="Token"></param>
+            <param name="repoName"></param>
         </member>
         <member name="P:UpdateAssistance.UpdateAssist.CanShutdown">
             <inheritdoc/>

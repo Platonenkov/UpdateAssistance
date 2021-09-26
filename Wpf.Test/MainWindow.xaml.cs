@@ -18,11 +18,11 @@ namespace Wpf.Test
         public MainWindow()
         {
             InitializeComponent();
-            Application.Current.MainWindow.Closing += new CancelEventHandler(this.MainWindow_Closing);
+            Application.Current.MainWindow.Closing += this.MainWindow_Closing;
             updateService = App.Hosting.Services.GetRequiredService<IUpdateService>();
             updateService.StartUpdateTimer(TimeSpan.FromMinutes(1));
-            var assembly = Assembly.GetAssembly(typeof(NotificationManager));
-            updateService.SetupSettings(assembly, "Notification.Wpf", assembly.ParsePackageVersion(),"Platonenkov", "", "Notification.Wpf");
+            var assembly = Assembly.GetAssembly(typeof(App));
+            updateService.SetupSettings(assembly,"Wpf.Test", assembly.ParsePackageVersion(),"Platonenkov",null, "UpdateAssistance");
         }
         private void MainWindow_Closing(object sender, CancelEventArgs e)
         {
@@ -52,6 +52,11 @@ namespace Wpf.Test
                     Application.Current.MainWindow.Close();
                 });
             }
+        }
+        private void RestartCommand()
+        {
+            var restoreService = App.Hosting.Services.GetRequiredService<IRestoreService>();
+            restoreService.SoftApplicationRestart();
         }
 
     }

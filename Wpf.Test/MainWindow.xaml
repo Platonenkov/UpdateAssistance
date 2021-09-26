@@ -14,7 +14,7 @@
             <StatusBarItem Content="Status:"/>
         </StatusBar>
         <Grid>
-
+            <TextBlock Text="NEW" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
         </Grid>
     </DockPanel>
 </Window>
