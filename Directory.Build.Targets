@@ -1,0 +1,39 @@
+﻿<Project>
+
+  <!-- AssemblyInfo -->
+  <PropertyGroup>
+    <LangVersion>Latest</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <SourceRevisionId>
+      ^build_date$([System.DateTime]::UtcNow.ToString("yyyy-MM-ddTHH:mm:ss:fffZ"))
+    </SourceRevisionId>
+    <Authors>https://github.com/Platonenkov</Authors>
+    <Product>Upadate Assistance</Product>
+    <Copyright>Copyright © $([System.DateTime]::Today.ToString(yyyy)) Platonenkov. All rights reserved.</Copyright>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+
+    <PackageProjectUrl>https://github.com/Platonenkov/UpdateAssistance</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Platonenkov/UpdateAssistance</RepositoryUrl>
+  </PropertyGroup>
+
+  <!--Для пакетов-->
+  <PropertyGroup>
+    <PackageIcon>icon.png</PackageIcon>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PackageTags>Automatical update</PackageTags>
+  </PropertyGroup>
+
+  <!--Иконка пакетов-->
+  <ItemGroup>
+    <None Include="..\Resources\icon.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+
+</Project>

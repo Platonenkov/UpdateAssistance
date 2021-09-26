@@ -6,25 +6,15 @@
         xmlns:local="clr-namespace:Wpf.Test"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <local:ZoomBorder x:Name="border" ClipToBounds="False" IsManipulationEnabled="True" RenderTransformOrigin="0.5, 0.5">
-            <local:ZoomBorder.RenderTransform>
-                <RotateTransform Angle="0" CenterX="0" CenterY="0" />
-            </local:ZoomBorder.RenderTransform>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="File"/>
+        </Menu>
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem Content="Status:"/>
+        </StatusBar>
+        <Grid>
 
-            <Image
-                MaxWidth="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ActualWidth}"
-                MaxHeight="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ActualHeight}"
-                Stretch="Uniform"
-                HorizontalAlignment="Center"  >
-                <Image.Source>
-                    <FormatConvertedBitmap Source="D:\test.png"
-                                           DestinationFormat="Gray32Float" />
-                </Image.Source>
-            </Image>
-        </local:ZoomBorder>
-    </Grid>
+        </Grid>
+    </DockPanel>
 </Window>

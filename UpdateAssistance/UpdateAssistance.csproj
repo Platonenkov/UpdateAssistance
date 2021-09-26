@@ -9,4 +9,31 @@
     <PackageReference Include="System.Reactive" Version="5.0.0" />
   </ItemGroup>
 
+  <!--Генерация документации-->
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>$(MSBuildProjectName).xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>$(MSBuildProjectName).xml</DocumentationFile>
+  </PropertyGroup>
+
+  <!--После сборки копируем файл лицензии и документацию в выходной каталог-->
+  <Target Name="AfterBuild">
+    <!--<Copy SourceFiles="$(MSBuildThisFileDirectory)\License.md" DestinationFiles="$(OutputPath)/License.md"></Copy>-->
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\$(MSBuildProjectName).xml" DestinationFiles="$(OutputPath)/$(MSBuildProjectName).xml"></Copy>
+  </Target>
+  <ItemGroup>
+    <Content Remove="UpdateAssistance.xml" />
+  </ItemGroup>
+
+  <!--Копирование документации в выходной каталог-->
+  <ItemGroup>
+    <Content Include="$(MSBuildProjectName).xml">
+      <PackagePath></PackagePath>
+      <!--Полный путь к директории где файл-->
+      <Pack>True</Pack>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>
